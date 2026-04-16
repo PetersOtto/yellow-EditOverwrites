@@ -1,0 +1,506 @@
+/* Start with modul _new-yellow-editor.scss */
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Yellow Editor
+// Variables
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// color
+$edit-text-color: #222;
+$edit-bg-color: #f0f0f0;
+$edit-light-color: #fff;
+$edit-accent-color: #ffd500;
+
+
+// spacing
+$edit-login-width: 30rem;
+$edit-width-margin-correction: 31%;
+$edit-container-width: 1500px;
+
+// typo
+$edit-underline-offset: 5px;
+$edit-decoration-thickness: 2px;
+
+// typo main text
+$edit-line-height-text: 1.2;
+$edit-font-weight-text: 400;
+$edit-font-size-text: 1.25rem;
+
+// typo main markdown
+$edit-line-height-markdown: 1.2;
+$edit-font-weight-markdown: 400;
+$edit-font-size-markdown: 1rem;
+
+// typo heading
+$edit-line-height-heading: 1.2;
+$edit-font-weight-heading: 400;
+$edit-font-size-heading: 2.25rem;
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Yellow Editor
+// Mixins
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@mixin edit-typo-text {
+	font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Consolas", "Courier New", monospace;
+	line-height: $edit-line-height-text;
+	font-size: $edit-font-size-text;
+	font-weight: $edit-font-weight-text;
+	color: $edit-text-color;
+}
+
+@mixin edit-typo-markdown {
+	font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Consolas", "Courier New", monospace;
+	line-height: $edit-line-height-markdown;
+	font-size: $edit-font-size-markdown;
+	font-weight: $edit-font-weight-markdown;
+	color: $edit-text-color;
+}
+
+@mixin edit-typo-heading {
+	font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Consolas", "Courier New", monospace;
+	line-height: $edit-line-height-heading;
+	font-size: $edit-font-size-heading;
+	font-weight: $edit-font-weight-heading;
+	color: $edit-text-color;
+}
+
+@mixin edit-link {
+	color: $edit-text-color;
+	text-decoration-color: $edit-text-color;
+	text-underline-offset: $edit-underline-offset;
+	text-decoration: none;
+
+	&:link,
+	&:visited {
+		text-decoration: none;
+	}
+
+	&.active,
+	&:hover {
+		text-decoration: underline;
+		text-decoration-thickness: $edit-decoration-thickness;
+	}
+}
+
+@mixin edit-link-bar {
+	color: $edit-text-color;
+	text-decoration-color: $edit-text-color;
+	text-underline-offset: $edit-underline-offset;
+	text-decoration: none;
+	padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+
+	&:link,
+	&:visited {
+		text-decoration: none;
+	}
+
+	&.active,
+	&:hover {
+		text-decoration: none;
+		background-color: $edit-text-color;
+		color: $edit-bg-color;
+		padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+	}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Yellow Editor
+// Adjustments
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#yellow-bar {
+	@include edit-typo-text;
+	margin: 0.5rem auto 0 auto;
+	padding: 0 0 0 0;
+	width: 100% !important;
+	max-width: $edit-container-width;
+	border: solid 2px $edit-text-color;
+	background-color: $edit-bg-color;
+	z-index: 10;
+
+	#yellow-bar-content {
+		margin: 0 0 0 0;
+		padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+
+		.yellow-bar-left,
+		.yellow-bar-right {
+			a {
+				@include edit-link-bar;
+			}
+		}
+	}
+}
+
+
+#yellow-pane-account-content,
+#yellow-pane-configure-content {
+
+		.yellow-close {
+			color: $edit-text-color;
+		}
+	
+	#yellow-pane-account-status,
+	#yellow-pane-configure-status {
+		@include edit-typo-text;
+		margin: 0 auto 0 $edit-width-margin-correction;
+		padding: 0 0 1rem 0;
+		max-width: $edit-login-width;
+		width: 100%;
+		text-align: left;
+	}
+
+	.yellow-title {
+		margin: 2rem auto 0 $edit-width-margin-correction;
+		padding: 0 0 0 0;
+		max-width: $edit-login-width;
+
+		h1 {
+			@include edit-typo-heading;
+			margin: 0 0 2rem 0;
+			padding: 0 0 0 0;
+			text-align: left;
+		}
+	}
+
+	#yellow-pane-account-settings-actions,
+	#yellow-pane-configure-settings-actions {
+		a {
+			@include edit-typo-text;
+			@include edit-link;
+		}
+	}
+
+	#yellow-pane-account-settings-fields,
+	#yellow-pane-configure-settings-fields {
+		margin: 0 0 0 0;
+		padding: 0 0 0 0;
+		max-width: $edit-login-width;
+		width: 100%;
+		text-align: left;
+
+		a {
+			@include edit-typo-text;
+			@include edit-link;
+			width: 100%;
+			max-width: $edit-login-width;
+			text-decoration: none;
+		}
+
+		p {
+			margin: 0 0 0 0;
+			padding: 0 0 1rem 0;
+		}
+
+		#yellow-pane-account-de,
+		#yellow-pane-account-en,
+		#yellow-pane-account-sv{
+			width: 1rem;
+		}
+
+
+		label,
+		p,
+		input {
+			@include edit-typo-text;
+			width: 100%;
+			max-width: $edit-login-width;
+		}
+
+
+		.yellow-form-control {
+			margin: 0 0 0 0;
+			padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+			display: inline-block;
+			background-image: none;
+			background-color: $edit-light-color;
+			border: solid 2px $edit-text-color;
+			border-radius: 0;
+		}
+
+		.yellow-btn {
+			margin: 2rem 0 2rem 0;
+			padding: 0.6rem 0.5rem 0.4rem 0.5rem;
+			max-width: calc($edit-login-width * 0.5);
+			background-color: $edit-bg-color;
+			background-image: none;
+			border-radius: 0;
+			border: solid 2px $edit-text-color;
+			display: inline-block;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $edit-text-color;
+				color: $edit-bg-color;
+			}
+		}
+
+	}
+}
+
+
+#yellow-pane-update-buttons{
+	.yellow-btn {
+			margin: 2rem 0 2rem 0;
+			padding: 0.6rem 0.5rem 0.4rem 0.5rem;
+			max-width: calc($edit-login-width * 0.5);
+			background-color: $edit-bg-color;
+			background-image: none;
+			border-radius: 0;
+			border: solid 2px $edit-text-color;
+			display: inline-block;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $edit-text-color;
+				color: $edit-bg-color;
+			}}
+}
+
+#yellow-pane-edit-arrow,
+#yellow-pane-create-arrow,
+#yellow-pane-delete-arrow,
+#yellow-pane-menu-arrow {
+	&::before {
+		border-bottom-color: $edit-text-color;
+		border-width: 12px;
+		margin-left: -12px;
+	}
+
+	&::after {
+		border-bottom-color: $edit-bg-color;
+		border-width: 9px;
+		margin-left: -9px;
+	}
+}
+
+#yellow-pane-menu {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	box-shadow: none;
+	border: solid 2px $edit-text-color;
+	border-radius: 0;
+	background-color: $edit-bg-color;
+
+	#yellow-pane-menu-content {
+		@include edit-typo-text;
+
+		span {
+			padding: 0.25rem 1rem 0.25rem 1rem;
+		}
+
+		a {
+			@include edit-link-bar;
+			padding: 0.25rem 1rem 0.25rem 1rem;
+
+			&:hover {
+				padding: 0.25rem 1rem 0.25rem 1rem;
+			}
+		}
+	}
+}
+
+
+#yellow-pane-edit,
+#yellow-pane-create,
+#yellow-pane-delete,
+#yellow-pane-account,
+#yellow-pane-configure,
+#yellow-pane-update{
+	margin: 0 0 0 -2px !important;
+	padding: 0 0 2rem 0;
+	width: 100% !important;
+	max-width: $edit-container-width;
+	box-shadow: none;
+	border: solid 2px $edit-text-color;
+	border-radius: 0;
+	background-color: $edit-bg-color;
+
+	#yellow-pane-edit-text,
+	#yellow-pane-create-text,
+	#yellow-pane-delete-text {
+		width: 100% !important;
+		max-width: calc($edit-container-width - 2.2rem);
+		margin: 0 0 0 0;
+		padding: 2rem 2rem 0 2rem;
+		background-color: $edit-bg-color;
+		border: solid 2px $edit-text-color;
+	}
+
+	#yellow-pane-edit-content,
+	#yellow-pane-create-content,
+	#yellow-pane-delete-content,
+	#yellow-pane-update-content {
+		@include edit-typo-markdown;
+		margin: 1rem 1rem 1rem 1rem;
+		padding: 0 0 0 0;
+
+		#yellow-pane-edit-toolbar,
+		#yellow-pane-create-toolbar,
+		#yellow-pane-delete-toolbar {
+			margin: 0 0 2rem 0;
+			padding: 0 0 0 0;
+
+			a,
+			a.yellow-toolbar-btn {
+				@include edit-typo-text;
+				margin: 0 0.5rem 0 0;
+				padding: 0.7rem 0.5rem 0.3rem 0.5rem;
+				background-color: $edit-bg-color;
+				background-image: none;
+				border-radius: 0;
+				border: solid 2px $edit-text-color;
+				display: inline-block;
+				cursor: pointer;
+
+				&:hover {
+					background-color: $edit-text-color;
+					color: $edit-bg-color;
+				}
+			}
+
+			#yellow-pane-edit-submit,
+			#yellow-pane-create-submit,
+			#yellow-pane-delete-submit,
+			 #yellow-pane-update-submit{
+				margin: 0 0 0 0;
+			}
+		}
+	}
+}
+
+
+#yellow-pane-login,
+#yellow-pane-forgot,
+#yellow-pane-signup,
+ #yellow-pane-update{
+	margin: 0 0 0 -2px;
+	padding: 5rem 0 5rem 0;
+	width: 100% !important;
+	max-width: $edit-container-width;
+	box-shadow: none;
+	border: solid 2px $edit-text-color;
+	border-radius: 0;
+	background-color: $edit-bg-color;
+}
+
+#yellow-pane-login-content,
+#yellow-pane-forgot-content,
+#yellow-pane-signup-content,
+#yellow-pane-update-content {
+
+	.yellow-title {
+		margin: 0 auto 0 auto;
+		padding: 0 0 0 0;
+		max-width: $edit-login-width;
+
+		h1 {
+			@include edit-typo-heading;
+			margin: 0 0 2rem 0;
+			padding: 0 0 0 0;
+			text-align: left;
+		}
+	}
+
+	.yellow-status {
+
+		#yellow-pane-forgot-status,
+		#yellow-pane-signup-status,
+		#yellow-pane-update-status {
+			@include edit-typo-text;
+			margin: 0 auto 0 auto;
+			padding: 0 0 1rem 0;
+			max-width: $edit-login-width;
+			width: 100%;
+			text-align: left;
+		}
+	}
+
+	.yellow-fields {
+		margin: 0 auto 0 auto;
+		padding: 0 0 0 0;
+		max-width: $edit-login-width;
+		width: 100%;
+		text-align: left;
+
+		a {
+			@include edit-typo-text;
+			@include edit-link;
+			width: 100%;
+			max-width: $edit-login-width;
+			text-decoration: none;
+		}
+
+		p {
+			margin: 0 0 0 0;
+			padding: 0 0 1rem 0;
+		}
+
+
+		label,
+		p,
+		input {
+			@include edit-typo-text;
+			width: 100%;
+			max-width: $edit-login-width;
+		}
+
+
+		input#yellow-pane-signup-consent {
+			margin: 0 0 0 0;
+			padding: 0 0 0 0;
+			width: 2rem;
+			height: 2rem;
+			display: inline-block;
+			background-image: none;
+			background-color: $edit-light-color;
+			box-shadow: 0px 0px 0px 2px $edit-accent-color;
+			cursor: pointer;
+		}
+
+		.yellow-btn {
+			margin: 2rem 0 2rem 0;
+			padding: 0.6rem 0.5rem 0.4rem 0.5rem;
+			max-width: calc($edit-login-width * 0.5);
+			background-color: $edit-bg-color;
+			background-image: none;
+			border-radius: 0;
+			border: solid 2px $edit-text-color;
+			display: inline-block;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $edit-text-color;
+				color: $edit-bg-color;
+			}
+		}
+
+		.yellow-form-control {
+			margin: 0 0 0 0;
+			padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+			display: inline-block;
+			background-image: none;
+			background-color: $edit-light-color;
+			border: solid 2px $edit-text-color;
+			border-radius: 0;
+		}
+
+		.yellow-center {
+			text-align: left;
+			width: 100%;
+			max-width: $edit-login-width;
+		}
+	}
+
+	form {
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+
+		.yellow-close {
+			color: $edit-text-color;
+		}
+	}
+}
