@@ -9,8 +9,8 @@ $edit-bg-color: #f0f0f0;
 $edit-light-color: #fff;
 $edit-accent-color: #ffd500;
 
-
 // spacing
+$edit-z-index: 1000000;
 $edit-login-width: 30rem;
 $edit-width-margin-correction: 31%;
 $edit-container-width: 1500px;
@@ -111,21 +111,27 @@ $edit-font-size-heading: 2.25rem;
 
 #yellow-bar {
 	@include edit-typo-text;
-	margin: 0.5rem auto 0 auto;
+	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 	width: 100% !important;
-	max-width: $edit-container-width;
-	border: solid 2px $edit-text-color;
-	background-color: $edit-bg-color;
-	z-index: 10;
+	top: 10px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
 
 	#yellow-bar-content {
 		margin: 0 0 0 0;
-		padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+		padding: 0.6rem 0.5rem 0.4rem 0.5rem;
+		width: 100% !important;
+		z-index: $edit-z-index;
+		max-width: $edit-container-width;
+		border: solid 2px $edit-text-color;
+		background-color: $edit-bg-color;
 
 		.yellow-bar-left,
 		.yellow-bar-right {
 			a {
+				@include edit-typo-text;
 				@include edit-link-bar;
 			}
 		}
@@ -136,10 +142,19 @@ $edit-font-size-heading: 2.25rem;
 #yellow-pane-account-content,
 #yellow-pane-configure-content {
 
-		.yellow-close {
-			color: $edit-text-color;
+	.yellow-close {
+		color: $edit-text-color;
+		top: 1rem;
+		right: 1rem;
+
+		.yellow-icon {
+			width: 1.25rem;
+			height: 1.25rem;
+			background-size: 1.25rem;
 		}
-	
+	}
+
+
 	#yellow-pane-account-status,
 	#yellow-pane-configure-status {
 		@include edit-typo-text;
@@ -165,6 +180,7 @@ $edit-font-size-heading: 2.25rem;
 
 	#yellow-pane-account-settings-actions,
 	#yellow-pane-configure-settings-actions {
+
 		a {
 			@include edit-typo-text;
 			@include edit-link;
@@ -194,7 +210,7 @@ $edit-font-size-heading: 2.25rem;
 
 		#yellow-pane-account-de,
 		#yellow-pane-account-en,
-		#yellow-pane-account-sv{
+		#yellow-pane-account-sv {
 			width: 1rem;
 		}
 
@@ -239,22 +255,24 @@ $edit-font-size-heading: 2.25rem;
 }
 
 
-#yellow-pane-update-buttons{
+#yellow-pane-update-buttons {
 	.yellow-btn {
-			margin: 2rem 0 2rem 0;
-			padding: 0.6rem 0.5rem 0.4rem 0.5rem;
-			max-width: calc($edit-login-width * 0.5);
-			background-color: $edit-bg-color;
-			background-image: none;
-			border-radius: 0;
-			border: solid 2px $edit-text-color;
-			display: inline-block;
-			cursor: pointer;
+		@include edit-typo-text;
+		margin: 2rem 0 2rem 0;
+		padding: 0.6rem 0.5rem 0.4rem 0.5rem;
+		max-width: calc($edit-login-width * 0.5);
+		background-color: $edit-bg-color;
+		background-image: none;
+		border-radius: 0;
+		border: solid 2px $edit-text-color;
+		display: inline-block;
+		cursor: pointer;
 
-			&:hover {
-				background-color: $edit-text-color;
-				color: $edit-bg-color;
-			}}
+		&:hover {
+			background-color: $edit-text-color;
+			color: $edit-bg-color;
+		}
+	}
 }
 
 #yellow-pane-edit-arrow,
@@ -275,8 +293,9 @@ $edit-font-size-heading: 2.25rem;
 }
 
 #yellow-pane-menu {
+	z-index: $edit-z-index;
 	margin: 0 0 0 0;
-	padding: 0 0 0 0;
+	padding: 1rem 0 1rem 0;
 	box-shadow: none;
 	border: solid 2px $edit-text-color;
 	border-radius: 0;
@@ -291,6 +310,7 @@ $edit-font-size-heading: 2.25rem;
 
 		a {
 			@include edit-link-bar;
+			@include edit-typo-text;
 			padding: 0.25rem 1rem 0.25rem 1rem;
 
 			&:hover {
@@ -306,8 +326,9 @@ $edit-font-size-heading: 2.25rem;
 #yellow-pane-delete,
 #yellow-pane-account,
 #yellow-pane-configure,
-#yellow-pane-update{
-	margin: 0 0 0 -2px !important;
+#yellow-pane-update {
+	z-index: $edit-z-index;
+	margin: 0 0 0 0 !important;
 	padding: 0 0 2rem 0;
 	width: 100% !important;
 	max-width: $edit-container-width;
@@ -341,11 +362,18 @@ $edit-font-size-heading: 2.25rem;
 			margin: 0 0 2rem 0;
 			padding: 0 0 0 0;
 
+			a {
+				padding: 0.7rem 0.5rem 0.3rem 0.5rem;
+			}
+
+			a.yellow-toolbar-btn {
+				padding: 0.6rem 0.5rem 0.4rem 0.5rem;
+			}
+
 			a,
 			a.yellow-toolbar-btn {
 				@include edit-typo-text;
 				margin: 0 0.5rem 0 0;
-				padding: 0.7rem 0.5rem 0.3rem 0.5rem;
 				background-color: $edit-bg-color;
 				background-image: none;
 				border-radius: 0;
@@ -362,7 +390,7 @@ $edit-font-size-heading: 2.25rem;
 			#yellow-pane-edit-submit,
 			#yellow-pane-create-submit,
 			#yellow-pane-delete-submit,
-			 #yellow-pane-update-submit{
+			#yellow-pane-update-submit {
 				margin: 0 0 0 0;
 			}
 		}
@@ -373,8 +401,8 @@ $edit-font-size-heading: 2.25rem;
 #yellow-pane-login,
 #yellow-pane-forgot,
 #yellow-pane-signup,
- #yellow-pane-update{
-	margin: 0 0 0 -2px;
+#yellow-pane-update {
+	margin: 0 0 0 0;
 	padding: 5rem 0 5rem 0;
 	width: 100% !important;
 	max-width: $edit-container-width;
@@ -399,6 +427,20 @@ $edit-font-size-heading: 2.25rem;
 			margin: 0 0 2rem 0;
 			padding: 0 0 0 0;
 			text-align: left;
+		}
+	}
+
+	#yellow-pane-update-output,
+	#yellow-pane-update-buttons {
+		margin: 0 auto 0 auto;
+		padding: 0 0 0 0;
+		max-width: $edit-login-width;
+		width: 100%;
+		text-align: left;
+
+		p {
+			@include edit-typo-text;
+			padding-bottom: 0;
 		}
 	}
 
